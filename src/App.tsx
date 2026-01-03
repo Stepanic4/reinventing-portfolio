@@ -18,7 +18,7 @@ function App() {
                 {page === 'main' && (
                     <div className="flex flex-col items-center animate-in fade-in duration-700">
                         <div className="w-32 h-32 rounded-full bg-blue-500/20 border border-blue-500/50 mb-6 overflow-hidden">
-                            {/* Твое фото будет здесь */}
+                            {/* Фото мое */}
                         </div>
                         <h1 className="text-5xl font-black mb-4">Привет, я Разработчик</h1>
                         <p className="text-gray-400 text-center max-w-xl mb-12">Коротко обо мне: создаю крутые штуки на React.</p>
@@ -61,7 +61,9 @@ function App() {
 
             {/* ФУТЕР (будет всегда внизу) */}
             <footer className="w-full py-10 border-t border-white/5 bg-black/20 flex justify-between px-10 text-sm text-gray-500">
-                <div>Contacts: email@example.com</div>
+                <div className="cursor-pointer hover:text-white transition">
+                    <a href="mailto:stepanic9@gmail.com">Stepanic9@gmail.com</a>
+                </div>
                 <div className="cursor-pointer hover:text-white transition">Portfolio 2026 ©</div>
             </footer>
         </div>
