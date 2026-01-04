@@ -1,0 +1,11 @@
+{
+  "nav": {
+    "main": "Home",
+    "works": "Works",
+    "sv": "SV"
+  },
+  "hero": {
+    "title": "Hi, I'm a Developer",
+    "description": "About me: I create cool stuff with React."
+  }
+}

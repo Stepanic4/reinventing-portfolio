@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Header } from './components/Header';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+
+    const { t } = useTranslation();
     // Состояние: какая страница сейчас открыта
     const [page, setPage] = useState('main'); // 'main' | 'works' | 'cv'
 
@@ -20,8 +23,8 @@ function App() {
                         <div className="w-32 h-32 rounded-full bg-blue-500/20 border border-blue-500/50 mb-6 overflow-hidden">
                             {/* Фото мое */}
                         </div>
-                        <h1 className="text-5xl font-black mb-4">Привет, я Разработчик</h1>
-                        <p className="text-gray-400 text-center max-w-xl mb-12">Коротко обо мне: создаю крутые штуки на React.</p>
+                        <h1 className="text-5xl font-black mb-4">{t('hero.title')}</h1>
+                        <p className="text-gray-400 text-center max-w-xl mb-12">{t('hero.description')}</p>
 
                         {/* Заглушка под Pixel Slider */}
                         <div className="w-full aspect-video bg-white/5 rounded-[2.5rem] border border-white/10 flex items-center justify-center italic text-gray-600">

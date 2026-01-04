@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderProps {
     currentPage: string;
@@ -6,8 +7,11 @@ interface HeaderProps {
 }
 
 export const Header = ({ currentPage, setPage }: HeaderProps) => {
+    const { i18n, t } = useTranslation();
     const [isLangOpen, setIsLangOpen] = useState(false);
-    const [currentLang, setCurrentLang] = useState('RU');
+
+    // Берем текущий язык из i18n, чтобы стейт не сбрасывался при перезагрузке
+    const currentLang = i18n.language.toUpperCase();
 
     const languages = [
         { code: 'RU', label: 'Русский' },
@@ -37,10 +41,10 @@ export const Header = ({ currentPage, setPage }: HeaderProps) => {
                                 <button
                                     key={lang.code}
                                     onClick={() => {
-                                        setCurrentLang(lang.code);
+                                        i18n.changeLanguage(lang.code.toLowerCase()); // Реальное переключение
                                         setIsLangOpen(false);
                                     }}
-                                    className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-white/10 ${
+                                    className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-white/10 cursor-pointer ${
                                         currentLang === lang.code ? 'text-blue-400 bg-white/5' : 'text-gray-300'
                                     }`}
                                 >
@@ -51,10 +55,8 @@ export const Header = ({ currentPage, setPage }: HeaderProps) => {
                     )}
                 </div>
 
-                {/* Разделитель (опционально, можно удалить если хочешь совсем чисто) */}
                 <div className="w-[1px] h-6 bg-white/10 mx-1"></div>
 
-                {/* Переключатель темы */}
                 <button className="p-2 text-xl hover:scale-110 transition cursor-pointer text-white/80 hover:text-white">
                     🌓
                 </button>
@@ -64,17 +66,17 @@ export const Header = ({ currentPage, setPage }: HeaderProps) => {
             <div className="flex gap-3 text-white">
                 {currentPage !== 'main' && (
                     <button onClick={() => setPage('main')} className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer">
-                        Главная
+                        {t('nav.main')}
                     </button>
                 )}
                 {currentPage !== 'works' && (
                     <button onClick={() => setPage('works')} className="px-5 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 transition cursor-pointer shadow-lg shadow-blue-500/20">
-                        Работы
+                        {t('nav.works')}
                     </button>
                 )}
                 {currentPage !== 'cv' && (
                     <button onClick={() => setPage('cv')} className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer">
-                        CV
+                        {t('nav.cv')}
                     </button>
                 )}
             </div>

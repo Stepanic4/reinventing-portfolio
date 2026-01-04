@@ -1,0 +1,11 @@
+{
+  "nav": {
+    "main": "Domov",
+    "works": "Prace",
+    "sv": "SV"
+  },
+  "hero": {
+    "title": "Ahoj, jsem vývojář",
+    "description": "O mně: Tvořím skvělé věci s Reactem."
+  }
+}
