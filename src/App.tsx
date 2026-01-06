@@ -21,7 +21,9 @@ function App() {
             <main className="relative pt-20 flex-grow">
                 {/* Главная страница */}
                 {currentPage === 'main' && (
-                    <Hero />
+                    <div className="flex flex-col items-center">
+                        <Hero />
+                    </div>
                 )}
 
                 {/* Заглушки для других страниц */}
