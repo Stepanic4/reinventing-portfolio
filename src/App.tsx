@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
+import {useState} from 'react';
+import {Header} from './components/Header';
+import {Hero} from './components/Hero';
+import {Footer} from "./components/Footer.tsx";
 
 function App() {
     const [currentPage, setCurrentPage] = useState('main');
@@ -11,18 +12,20 @@ function App() {
 
             {/* Фоновые градиенты */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-900/20 blur-[120px] rounded-full"></div>
-                <div className="absolute top-[20%] -right-[10%] w-[30%] h-[50%] bg-indigo-900/10 blur-[120px] rounded-full"></div>
+                <div
+                    className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-900/20 blur-[120px] rounded-full"></div>
+                <div
+                    className="absolute top-[20%] -right-[10%] w-[30%] h-[50%] bg-indigo-900/10 blur-[120px] rounded-full"></div>
             </div>
 
-            <Header currentPage={currentPage} setPage={setCurrentPage} />
+            <Header currentPage={currentPage} setPage={setCurrentPage}/>
 
             {/* Добавляем flex-grow. Этот блок растянется и вытолкнет футер вниз */}
             <main className="relative pt-20 flex-grow">
                 {/* Главная страница */}
                 {currentPage === 'main' && (
                     <div className="flex flex-col items-center">
-                        <Hero />
+                        <Hero/>
                     </div>
                 )}
 
@@ -40,12 +43,7 @@ function App() {
                 )}
             </main>
 
-            <footer className="relative w-full py-10 border-t border-white/5 bg-black/20 flex justify-between px-10 text-sm text-gray-500">
-                <div className="cursor-pointer hover:text-white transition">
-                    <a href="mailto:stepanic9@gmail.com">stepanic9@gmail.com</a>
-                </div>
-                <div className="cursor-pointer hover:text-white transition">Portfolio 2026 ©</div>
-            </footer>
+            <Footer/>
         </div>
     );
 }

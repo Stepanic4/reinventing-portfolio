@@ -1,28 +1,30 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 
 interface HeaderProps {
     currentPage: string;
     setPage: (page: string) => void;
 }
 
-export const Header = ({ currentPage, setPage }: HeaderProps) => {
-    const { i18n, t } = useTranslation();
+export const Header = ({currentPage, setPage}: HeaderProps) => {
+    const {i18n, t} = useTranslation();
     const [isLangOpen, setIsLangOpen] = useState(false);
 
     // Берем текущий язык из i18n, чтобы стейт не сбрасывался при перезагрузке
     const currentLang = i18n.language.toUpperCase();
 
     const languages = [
-        { code: 'RU', label: 'Русский' },
-        { code: 'CZ', label: 'Čeština' },
-        { code: 'EN', label: 'English' }
+        {code: 'RU', label: 'Русский'},
+        {code: 'CZ', label: 'Čeština'},
+        {code: 'EN', label: 'English'}
     ];
 
     return (
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-transparent">
+        <header
+            className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-transparent">
             {/* Единый блок Языки + Тема */}
-            <div className="flex items-center bg-[#0f172a]/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-2xl relative">
+            <div
+                className="flex items-center bg-[#0f172a]/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-2xl relative">
 
                 {/* Кнопка выбора языка */}
                 <div className="relative">
@@ -36,7 +38,8 @@ export const Header = ({ currentPage, setPage }: HeaderProps) => {
 
                     {/* Выпадающий список (EN,CZ,RU) */}
                     {isLangOpen && (
-                        <div className="absolute top-full left-0 mt-2 w-36 bg-[#1e293b]/90 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl overflow-hidden z-[100]">
+                        <div
+                            className="absolute top-full left-0 mt-2 w-36 bg-[#1e293b]/90 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl overflow-hidden z-[100]">
                             {languages.map((lang) => (
                                 <button
                                     key={lang.code}
@@ -57,7 +60,8 @@ export const Header = ({ currentPage, setPage }: HeaderProps) => {
 
                 <div className="w-[1px] h-6 bg-white/10 mx-1"></div>
 
-                <button className="p-2 text-xl hover:scale-110 transition cursor-pointer text-white/80 hover:text-white">
+                <button
+                    className="p-2 text-xl hover:scale-110 transition cursor-pointer text-white/80 hover:text-white">
                     🌓
                 </button>
             </div>
@@ -65,17 +69,20 @@ export const Header = ({ currentPage, setPage }: HeaderProps) => {
             {/* Справа: Навигация */}
             <div className="flex gap-3 text-white">
                 {currentPage !== 'main' && (
-                    <button onClick={() => setPage('main')} className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer">
+                    <button onClick={() => setPage('main')}
+                            className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer">
                         {t('nav.main')}
                     </button>
                 )}
                 {currentPage !== 'works' && (
-                    <button onClick={() => setPage('works')} className="px-5 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 transition cursor-pointer shadow-lg shadow-blue-500/20">
+                    <button onClick={() => setPage('works')}
+                            className="px-5 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 transition cursor-pointer shadow-lg shadow-blue-500/20">
                         {t('nav.works')}
                     </button>
                 )}
                 {currentPage !== 'cv' && (
-                    <button onClick={() => setPage('cv')} className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer">
+                    <button onClick={() => setPage('cv')}
+                            className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer">
                         {t('nav.cv')}
                     </button>
                 )}
