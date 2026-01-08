@@ -75,11 +75,11 @@ function init() {
 }
 
 ////////////////////
-// КЛАССЫ (ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ)
+// Размеры осколков.
 ////////////////////
 
 function Slide(width, height, animationPhase) {
-    const plane = new THREE.PlaneGeometry(width, height, width * 2, height * 2);
+    const plane = new THREE.PlaneGeometry(width, height, width * 3, height * 3);
     THREE.BAS.Utils.separateFaces(plane);
     const geometry = new SlideGeometry(plane);
     geometry.bufferUVs();
