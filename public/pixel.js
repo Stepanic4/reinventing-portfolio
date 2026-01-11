@@ -1,6 +1,5 @@
-window.onload = init;
-console.warn = () => {
-};
+
+console.warn = () => {};
 
 function init() {
     const root = new THREERoot({
@@ -188,64 +187,118 @@ SlideGeometry.prototype.bufferPositions = function () {
 };
 
 function THREERoot(params) {
-    // Находим наш контейнер
     const container = document.getElementById('three-container');
 
     this.renderer = new THREE.WebGLRenderer({antialias: params.antialias, alpha: true});
     this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
 
-    // Вставляем холст именно в контейнер
     container.appendChild(this.renderer.domElement);
 
-    // Камера теперь берет размеры контейнера
     this.camera = new THREE.PerspectiveCamera(params.fov, container.clientWidth / container.clientHeight, 1, 10000);
     this.scene = new THREE.Scene();
 
     this.resize = () => {
         if (!container) return;
-
-        // Вместо фиксированных или старых значений берем текущую ширину родителя
         const currentWidth = container.clientWidth;
-
-        // Чтобы на мобилках высота не была огромной (600px),
-        // делаем её пропорциональной ширине (например, 16:9)
         const currentHeight = currentWidth < 768 ? currentWidth * 0.6 : container.clientHeight;
-
         this.camera.aspect = currentWidth / currentHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(currentWidth, currentHeight);
     };
 
+    // --- ИЗМЕНЕНИЯ ТУТ ---
     this.tick = () => {
         this.renderer.render(this.scene, this.camera);
-        requestAnimationFrame(this.tick);
+        this.rafID = requestAnimationFrame(this.tick);
     };
+
+    this.dispose = () => {
+        // 1. Останавливаем цикл отрисовки
+        cancelAnimationFrame(this.rafID);
+
+        // 2. Убиваем ВСЕ анимации TweenMax мгновенно
+        if (typeof TweenMax !== 'undefined') {
+            TweenMax.killAll();
+        }
+
+        // 3. Очищаем видеокарту
+        this.renderer.dispose();
+        if (this.renderer.domElement && this.renderer.domElement.parentNode) {
+            this.renderer.domElement.parentNode.removeChild(this.renderer.domElement);
+        }
+
+        // 4. Забываем про события и объекты
+        window.removeEventListener('resize', this.resize);
+        window.init = null;
+        console.log("Slider killed, memory cleared");
+    };
+    // ----------------------
 
     this.resize();
     this.tick();
     window.addEventListener('resize', this.resize, false);
+
+    // Делаем экземпляр доступным для React
+    window.rootInstance = this;
 }
 
 function createTweenScrubber(tween, seekSpeed = 0.001) {
     let _cx = 0;
     let mouseDown = false;
+
+    // Находим контейнер, чтобы вешать события ТОЛЬКО на него
+    const container = document.getElementById('three-container');
+    if (!container) return; // Если контейнера нет, ничего не делаем
+
     const seek = (dx) => {
         const p = THREE.Math.clamp((tween.progress() + (dx * seekSpeed)), 0, 1);
         tween.progress(p);
     };
-    window.addEventListener('mousedown', (e) => {
+
+    // --- МЫШЬ (теперь на container вместо window) ---
+    container.addEventListener('mousedown', (e) => {
         mouseDown = true;
         _cx = e.clientX;
         TweenMax.to(tween, 1, {timeScale: 0});
     });
+
+    // Оставляем window только для отпускания кнопки,
+    // чтобы если ты увел палец за пределы блока, "захват" прекратился
     window.addEventListener('mouseup', () => {
         mouseDown = false;
         TweenMax.to(tween, 1, {timeScale: 1});
     });
-    window.addEventListener('mousemove', (e) => {
+
+    container.addEventListener('mousemove', (e) => {
         if (mouseDown) {
             seek(e.clientX - _cx);
             _cx = e.clientX;
         }
     });
+
+    // --- ТАЧСКРИН (теперь на container вместо window) ---
+    container.addEventListener('touchstart', (e) => {
+        // Проверяем, что касание именно в блоке слайдера
+        mouseDown = true;
+        _cx = e.touches[0].clientX;
+        TweenMax.to(tween, 1, {timeScale: 0});
+        // НЕ блокируем скролл всей страницы сразу, даем сработать клику
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+        mouseDown = false;
+        TweenMax.to(tween, 1, {timeScale: 1});
+    });
+
+    container.addEventListener('touchmove', (e) => {
+        if (mouseDown && e.touches.length > 0) {
+            // Вот здесь КРИТИЧНО: предотвращаем скролл страницы,
+            // только если ведем пальцем внутри слайдера
+            if (e.cancelable) e.preventDefault();
+
+            const currentX = e.touches[0].clientX;
+            seek(currentX - _cx);
+            _cx = currentX;
+        }
+    }, { passive: false });
 }
