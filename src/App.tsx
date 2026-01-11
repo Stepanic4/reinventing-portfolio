@@ -4,7 +4,7 @@ import {Hero} from './components/Hero';
 import {Footer} from "./components/Footer.tsx";
 
 function App() {
-      const [currentPage, setCurrentPage] = useState('main');
+       const [currentPage, setCurrentPage] = useState('main');
 
     return (
         /* Добавляем flex flex-col и min-h-screen, чтобы всё приложение занимало минимум всю высоту экрана */
