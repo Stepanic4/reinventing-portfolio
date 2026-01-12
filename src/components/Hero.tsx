@@ -11,14 +11,11 @@ export const Hero = () => {
                 <div className="absolute inset-0 bg-blue-500/20 blur-[80px] rounded-full"></div>
                 <div
                     className="relative w-40 h-40 md:w-52 md:h-52 rounded-[3rem] overflow-hidden border border-white/10 bg-[#0f172a]/40 backdrop-blur-sm">
-                    <img
-                        src="/avatar.jpg"
-                        alt="Me"
+                    <img src="/avatar.jpg" alt="Me"
                         className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                         onError={(e) => {
                             e.currentTarget.src = "https://ui-avatars.com/api/?name=Dev&background=0f172a&color=fff&size=200";
-                        }}
-                    />
+                        }}/>
                 </div>
             </div>
 
@@ -32,8 +29,8 @@ export const Hero = () => {
                 </p>
             </div>
 
-            {/* Вставляем слайдер прямо ВНУТРЬ Hero вместо заглушки */}
-            <PixelSlider/>
+                <PixelSlider />
+
         </section>
     );
 };

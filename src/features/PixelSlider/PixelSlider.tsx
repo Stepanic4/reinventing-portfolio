@@ -76,11 +76,10 @@ export const PixelSlider = () => {
 
     // Показываем блок только на десктопах
     return (
-        <div
-            ref={containerRef}
+        <div ref={containerRef}
             id="three-container"
-            className="hidden lg:block w-full max-w-5xl mx-auto relative z-10 h-[600px]"
-        >
+            className="hidden lg:block relative z-10 h-[650px] min-h-[650px]
+               w-[calc(100%+4rem)] -mx-8 lg:w-[calc(100%+20rem)] lg:-mx-40">
         </div>
     );
 };

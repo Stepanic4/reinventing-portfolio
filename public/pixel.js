@@ -197,12 +197,26 @@ function THREERoot(params) {
     this.camera = new THREE.PerspectiveCamera(params.fov, container.clientWidth / container.clientHeight, 1, 10000);
     this.scene = new THREE.Scene();
 
+    // this.resize = () => {
+    //     if (!container) return;
+    //     const currentWidth = container.clientWidth;
+    //     const currentHeight = currentWidth < 768 ? currentWidth * 0.6 : container.clientHeight;
+    //     this.camera.aspect = currentWidth / currentHeight;
+    //     this.camera.updateProjectionMatrix();
+    //     this.renderer.setSize(currentWidth, currentHeight);
+    // };
     this.resize = () => {
         if (!container) return;
+
+        // 1. Берем РЕАЛЬНЫЕ размеры контейнера, которые ты задал в PixelSlider.tsx
         const currentWidth = container.clientWidth;
-        const currentHeight = currentWidth < 768 ? currentWidth * 0.6 : container.clientHeight;
+        const currentHeight = container.clientHeight;
+
+        // 2. Обновляем камеру под эти размеры
         this.camera.aspect = currentWidth / currentHeight;
         this.camera.updateProjectionMatrix();
+
+        // 3. Растягиваем канвас на всю высоту контейнера (на все 800px)
         this.renderer.setSize(currentWidth, currentHeight);
     };
 
