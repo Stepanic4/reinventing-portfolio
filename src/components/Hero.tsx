@@ -20,10 +20,10 @@ export const Hero = () => {
 
             {/* Текст */}
             <div className="text-center max-w-3xl mb-16">
-                <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight text-white">
+                <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight text-slate-900 dark:text-white">
                     {t('hero.title')}
                 </h1>
-                <p className="text-gray-400 text-lg md:text-xl leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 text-lg md:text-xl leading-relaxed">
                     {t('hero.description')}
                 </p>
             </div>

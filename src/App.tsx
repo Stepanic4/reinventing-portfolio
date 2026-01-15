@@ -7,8 +7,7 @@ function App() {
        const [currentPage, setCurrentPage] = useState('main');
 
      return (
-        /* Добавляем flex flex-col и min-h-screen, чтобы всё приложение занимало минимум всю высоту экрана */
-        <div className="flex flex-col min-h-screen bg-[#020617] text-slate-200 selection:bg-blue-500/30">
+         <div className="flex flex-col min-h-screen transition-colors duration-500 bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-slate-200 selection:bg-blue-500/30">
 
             <Header currentPage={currentPage} setPage={setCurrentPage}/>
 

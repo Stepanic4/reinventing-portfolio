@@ -1,13 +1,16 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 body {
     @apply bg-slate-50 text-slate-900;
+    @apply transition-all duration-500;
     margin: 0;
 }
 
 @layer components {
     .btn-nav-shadow {
-        @apply px-5 py-2 rounded-xl border transition-all duration-300 cursor-pointer text-white/70;
+        @apply text-slate-900 dark:text-white/70;
+        @apply px-5 py-2 rounded-xl border transition-all duration-300 cursor-pointer;
         /* 3D button */
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
         border-color: rgba(255, 255, 255, 0.15);
