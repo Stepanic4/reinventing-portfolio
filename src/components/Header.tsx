@@ -55,7 +55,7 @@ export const Header = ({currentPage, setPage}: HeaderProps) => {
                         <span className="text-sm font-semibold tracking-wider">{currentLang}</span>
                     </button>
 
-                    {/* Выпадающий список - добавлен белый фон для светлой темы */}
+                    {/* Выпадающий список */}
                     {isLangOpen && (
                         <div className="absolute top-full left-0 mt-3 w-40 bg-amber-50 dark:bg-[#1e293b]/95 backdrop-blur-2xl border border-black/10 dark:border-white/10 rounded-xl shadow-2xl overflow-hidden z-[100]">
                             {languages.map((lang) => (
@@ -64,7 +64,7 @@ export const Header = ({currentPage, setPage}: HeaderProps) => {
                                             i18n.changeLanguage(lang.code.toLowerCase());
                                             setIsLangOpen(false);
                                         }}
-                                    /* Исправлены цвета текста и ховера для светлой темы */
+
                                         className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-black/5 dark:hover:bg-white/10 cursor-pointer ${
                                             currentLang === lang.code ? 'text-blue-500 bg-black/5 dark:bg-white/5 font-bold' : 'text-amber-950 dark:text-gray-300'
                                         }`}>

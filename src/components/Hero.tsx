@@ -18,7 +18,6 @@ export const Hero = () => {
                 </div>
             </div>
 
-            {/* Текст */}
             <div className="text-center max-w-3xl mb-16">
                 <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight text-slate-900 dark:text-white">
                     {t('hero.title')}
@@ -27,9 +26,7 @@ export const Hero = () => {
                     {t('hero.description')}
                 </p>
             </div>
-
                 <PixelSlider />
-
         </section>
     );
 };

@@ -4,7 +4,7 @@ export const PixelSlider = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // 1. Если это мобилка — ВООБЩЕ ничего не грузим и не запускаем
+        //  Если это мобилка — ВООБЩЕ ничего не грузим и не запускаем
         if (window.innerWidth < 1024) return;
 
         const loadScripts = async (): Promise<void> => {
@@ -74,7 +74,7 @@ export const PixelSlider = () => {
         };
     }, []);
 
-    // Показываем блок только на десктопах
+    // Показываем блок только на десктоп
     return (
         <div ref={containerRef}
             id="three-container"

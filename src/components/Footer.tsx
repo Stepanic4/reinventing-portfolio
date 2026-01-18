@@ -19,7 +19,6 @@ export const Footer = () => {
             <div className="cursor-pointer transition-transform duration-700 ease-in-out hover:[transform:rotateX(360deg)]">
                 Portfolio 2026 ©
             </div>
-
         </footer>
     );
 };
