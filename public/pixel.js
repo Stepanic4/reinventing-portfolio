@@ -1,12 +1,21 @@
 
 console.warn = () => {};
 
-function init() {
+function init(onLoaded) {
     const root = new THREERoot({
         createCameraControls: false,
         antialias: (window.devicePixelRatio === 1),
         fov: 80
     });
+
+    // менеджер загрузки
+    const manager = new THREE.LoadingManager();
+    manager.onLoad = () => {
+        if (onLoaded) onLoaded();
+    };
+
+    const l = new THREE.ImageLoader(manager); // Передаем менеджер в лоадер
+    l.setCrossOrigin('Anonymous');
 
     root.renderer.setClearColor(0x000000, 0);
     root.renderer.setPixelRatio(window.devicePixelRatio || 1);
@@ -15,9 +24,7 @@ function init() {
     const width = 100;
     const height = 60;
 
-    // --- 1. ЗАГРУЗКА ВСЕХ СЛАЙДОВ ---
-    const l = new THREE.ImageLoader();
-    l.setCrossOrigin('Anonymous');
+    // --- ЗАГРУЗКА ВСЕХ СЛАЙДОВ ---
 
     const slide1 = new Slide(width, height, 'out');
     slide1.setImage(l.load('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1000&auto=format&fit=crop'));
