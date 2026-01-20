@@ -7,5 +7,12 @@
   "hero": {
     "title": "Hi, I'm a Developer",
     "description": "About me: I create cool stuff with React."
+  },
+  "resume": {
+    "download": "Download PDF",
+    "contacts": "Contacts",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education"
   }
 }

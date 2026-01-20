@@ -7,5 +7,12 @@
   "hero": {
     "title": "Ahoj, jsem vývojář",
     "description": "O mně: Tvořím skvělé věci s Reactem."
+  },
+  "resume": {
+    "download": "Stáhnout PDF",
+    "contacts": "Kontakty",
+    "experience": "Zkušenosti",
+    "skills": "Dovednosti",
+    "education": "Vzdělání"
   }
 }

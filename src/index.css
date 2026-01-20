@@ -64,3 +64,23 @@ body {
 .animate-triangle {
     animation: triangle-pulse 1.5s infinite ease-in-out;
 }
+
+@media print {
+    /* Скрываем всё, что помечено этим классом */
+    .no-print {
+        display: none !important;
+    }
+
+    /* Настройки самой страницы PDF */
+    @page {
+        size: A4;
+        margin: 0; /* Убираем системные отступы браузера */
+    }
+
+    /* Чтобы градиенты и цвета не пропадали на iPhone */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background-color: white; /* Для PDF всегда белый фон */
+    }
+}

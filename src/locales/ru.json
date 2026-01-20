@@ -7,5 +7,12 @@
   "hero": {
     "title": "Привет, я Разработчик",
     "description": "Коротко обо мне: создаю крутые штуки на React."
+  },
+  "resume": {
+    "download": "Скачать PDF",
+    "contacts": "Контакты",
+    "experience": "Опыт",
+    "skills": "Навыки",
+    "education": "Образование"
   }
 }

@@ -91,8 +91,8 @@ export const Header = ({currentPage, setPage}: HeaderProps) => {
                         {t('nav.works')}
                     </button>
                 )}
-                {currentPage !== 'cv' && (
-                    <button onClick={() => setPage('cv')} className="btn-nav-shadow">
+                {currentPage !== 'resume' && (
+                    <button onClick={() => setPage('resume')} className="btn-nav-shadow">
                         {t('nav.cv')}
                     </button>
                 )}

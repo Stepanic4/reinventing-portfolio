@@ -6,7 +6,7 @@ EN
 ## 📱 Project Structure
 * **Page 1 (Home):** Profile intro + **Pixel-Disruption Slider** (Legacy Three.js engine ported to React).
 * **Page 2 (Works):** Modern Bento Grid. Interactive cards with **Glass-Shatter effect** (Cracks on hover, explodes on click).
-* **Page 3 (CV):** Interactive Resume with "Save as PDF" functionality.
+* **Page 3 (Resume):** Interactive Resume with "Save as PDF" functionality.
 
 ## 🛠 Features
 * **Custom Physics:** Transitioning from 2015-era Three.js to modern React-Three-Fiber.
