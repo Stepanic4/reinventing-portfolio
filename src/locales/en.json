@@ -8,11 +8,21 @@
     "title": "Hi, I'm a Developer",
     "description": "About me: I create cool stuff with React."
   },
+
   "resume": {
     "download": "Download PDF",
     "contacts": "Contacts",
     "experience": "Experience",
+    "experience_text": "Development of interfaces and support of payment solutions. November 2017 — Simplepin.inc (Front-End Developer)\n\nResponsible for implementing visual elements that users see and interact within a web application. Key responsibilities:\n• Evolve User Interface of core SimplePin application and Company website\n• Develop and deploy new features and functionality\n• Maintain and improve existing code, monitoring for front-end errors\n• Work with the team on release planning and deployment\n• Provide technical solutions related to UI/UX\n• Perform technical investigation of customer support issues\n\nDecember 2016 to November 2017 — Freelancer\n• Creating landing pages, websites, mobile adaptation, and email templates.",
     "skills": "Skills",
-    "education": "Education"
+    "education": "Education",
+    "core": "Core",
+    "frontend": "Frontend",
+    "tools": "Tools",
+    "lang": "Language",
+    "info": "Information & Achievements",
+    "proj": "Last Projects",
+    "proj_info": "More code examples, technical solutions, and detailed case studies are available on my profile:",
+    "name": "Ivan Zolotukhin"
   }
 }

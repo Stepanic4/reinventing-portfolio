@@ -65,22 +65,52 @@ body {
     animation: triangle-pulse 1.5s infinite ease-in-out;
 }
 
+/* Резюме */
 @media print {
-    /* Скрываем всё, что помечено этим классом */
-    .no-print {
-        display: none !important;
+    /* Скрываем всё */
+    body * {
+        visibility: hidden;
     }
 
-    /* Настройки самой страницы PDF */
+    /* Показываем только контейнер резюме и его содержимое */
+    .resume-sheet,
+    .resume-sheet * {
+        visibility: visible;
+    }
+
+    /* Прижимаем лист к краям PDF */
+    .resume-sheet {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        background-color: white !important;
+        color: black !important;
+        min-height: 297mm;
+    }
+
+    /* Силовое отключение темной темы для текста и рамок */
+    .resume-sheet {
+        color: #000 !important;
+    }
+
+    .resume-sheet h1,
+    .resume-sheet h4,
+    .resume-sheet p,
+    .resume-sheet li {
+        color: #000 !important;
+    }
+
+    .resume-sheet .border-b {
+        border-color: #f1f5f9 !important; /* slate-100 */
+    }
+
+    /* Настройки страницы */
     @page {
         size: A4;
-        margin: 0; /* Убираем системные отступы браузера */
-    }
-
-    /* Чтобы градиенты и цвета не пропадали на iPhone */
-    body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        background-color: white; /* Для PDF всегда белый фон */
+        margin: 0;
     }
 }
