@@ -265,7 +265,7 @@ export const Resume = () => {
                     </div>
                 </div>
 
-                <footer className="p-4 text-[10px] text-slate-800 dark:text-slate-600 tracking-widest flex justify-between items-center border-t border-slate-50 dark:border-slate-800">
+                <footer className="py-4 mx-10 text-[10px] text-slate-800 dark:text-slate-600 tracking-widest flex justify-between items-center border-t border-slate-100 dark:border-slate-800 print:mb-10 print:border-slate-200">
                     <a href="https://www.linkedin.com/in/ivan-zolotukhin"
                        target="_blank"
                        rel="noopener noreferrer"
