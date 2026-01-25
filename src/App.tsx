@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {Header} from './components/Header';
 import {Hero} from './components/Hero';
-import {Footer} from "./components/Footer.tsx";
-import {Resume} from "./components/Resume.tsx";
-import {Works} from "./components/Works.tsx";
+import {Footer} from "./components/Footer";
+import {Resume} from "./components/Resume";
+import {Works} from "./components/Works";
 
 function App() {
     const [currentPage, setCurrentPage] = useState('main');
