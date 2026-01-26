@@ -23,5 +23,16 @@
     "proj": "Poslední projekty",
     "proj_info": "Další příklady kódu, technická řešení a podrobné případové studie jsou k dispozici na mém profilu:",
     "name": "Ivan Zolotuchin"
+  },
+  "projects": {
+    "view_project": "Zobrazit projekt",
+    "p1_t": "Digitální identita",
+    "p1_d": "Vývoj jedinečného vizuálního stylu a strategie umístění v digitálním prostředí.",
+    "p2_t": "Kreativní kódování",
+    "p2_d": "Experimentování s generativní grafikou a interaktivními animacemi.",
+    "p3_t": "UI/UX design",
+    "p3_d": "Vytváření intuitivních rozhraní pro webové aplikace.",
+    "p4_t": "Super mega projekt",
+    "p4_d": "Popis vašeho čtvrtého skvělého projektu."
   }
 }

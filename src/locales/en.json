@@ -24,5 +24,16 @@
     "proj": "Last Projects",
     "proj_info": "More code examples, technical solutions, and detailed case studies are available on my profile:",
     "name": "Ivan Zolotukhin"
+  },
+  "projects": {
+    "view_project": "View project",
+    "p1_t": "Digital Identity",
+    "p1_d": "Developing a unique visual style and positioning strategy in the digital environment.",
+    "p2_t": "Creative Coding",
+    "p2_d": "Experimenting with generative graphics and interactive animations.",
+    "p3_t": "UI/UX Design",
+    "p3_d": "Creating intuitive interfaces for web applications.",
+    "p4_t": "Super Mega Project",
+    "p4_d": "Description of your fourth cool project."
   }
 }
