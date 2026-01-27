@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 interface GlassCardProps {
     imageSrc: string;
-    title: string;
+     title: string;
     description?: string;
     link?: string;
 }
