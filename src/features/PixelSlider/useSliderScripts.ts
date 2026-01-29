@@ -8,26 +8,32 @@ interface CustomWindow extends Window {
 }
 
 export const useSliderScripts = (containerRef: RefObject<HTMLDivElement | null>) => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(() =>
+        typeof window !== 'undefined' ? window.innerWidth >= 1024 : true
+    );
 
     useEffect(() => {
         let isDestroyed = false;
+        const container = containerRef.current;
 
-        if (window.innerWidth < 1024) {
+        if (window.innerWidth < 1024 || !container) {
             setIsLoading(false);
             return;
         }
 
         const loadScripts = async () => {
-            const addScript = (src: string, id: string): Promise<void> => {
+            const addScript = (src: string, id: string, force = false): Promise<void> => {
                 return new Promise((resolve) => {
                     const existing = document.getElementById(id);
-                    if (existing) {
+                    if (existing && !force) {
                         resolve();
                         return;
                     }
+                    if (existing && force) existing.remove();
+
                     const script = document.createElement('script');
-                    script.src = src;
+                    // Добавляем timestamp для обхода кэша при force перезагрузке
+                    script.src = force ? `${src}?t=${Date.now()}` : src;
                     script.id = id;
                     script.async = false;
                     script.onload = () => resolve();
@@ -36,40 +42,36 @@ export const useSliderScripts = (containerRef: RefObject<HTMLDivElement | null>)
             };
 
             try {
-                // Загружаем всё по очереди
                 await addScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js", "three-js");
                 await Promise.all([
                     addScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js", "gsap-js"),
                     addScript("https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/bas.js", "bas-js")
                 ]);
-                await addScript("/pixel.js", "pixel-js");
+
+                // Перегружаем pixel.js каждый раз, чтобы восстановить window.init
+                await addScript("/pixel.js", "pixel-js", true);
 
                 if (isDestroyed) return;
-
                 const win = window as unknown as CustomWindow;
 
                 const startup = () => {
-                    if (isDestroyed) return;
+                    if (isDestroyed || !container) return;
 
-                    // Если всё готово и есть куда вставлять
-                    if (win.init && win.THREE?.BAS && containerRef.current) {
-                        // Если канваса еще нет - инициализируем
-                        if (!containerRef.current.querySelector('canvas')) {
-                            win.init(() => {
-                                if (!isDestroyed) setIsLoading(false);
-                            });
-                        } else {
-                            // Если канвас уже есть (от прошлого раза), просто выключаем загрузку
-                            setIsLoading(false);
-                        }
+                    if (typeof win.init === 'function' && win.THREE?.BAS) {
+                        const oldCanvas = container.querySelector('canvas');
+                        if (oldCanvas) oldCanvas.remove();
+
+                        win.init(() => {
+                            if (!isDestroyed) setIsLoading(false);
+                        });
                     } else {
                         setTimeout(startup, 100);
                     }
                 };
-
                 startup();
             } catch (err) {
                 console.error("Slider error:", err);
+                if (!isDestroyed) setIsLoading(false);
             }
         };
 
@@ -79,11 +81,14 @@ export const useSliderScripts = (containerRef: RefObject<HTMLDivElement | null>)
             isDestroyed = true;
             const win = window as any;
             if (win.rootInstance?.dispose) {
-                win.rootInstance.dispose();
+                try {
+                    win.rootInstance.dispose();
+                } catch (e) {
+                    console.warn("Cleanup error:", e);
+                }
                 win.rootInstance = null;
             }
-            // НЕ удаляем скрипты из body при каждом размонтировании,
-            // чтобы не грузить их заново. Удалим только если нужно.
+            if (container) container.innerHTML = '';
         };
     }, [containerRef]);
 
