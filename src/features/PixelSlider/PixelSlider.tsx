@@ -1,9 +1,9 @@
-import { useRef } from 'react';
-import { useSliderScripts } from './useSliderScripts';
+import {useRef} from 'react';
+import {useSliderScripts} from './useSliderScripts';
 
 export const PixelSlider = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const { isLoading } = useSliderScripts(containerRef);
+    const {isLoading} = useSliderScripts(containerRef);
 
     return (
         <div className="relative w-full flex flex-col items-center min-h-[650px]">

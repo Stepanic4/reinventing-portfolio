@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect, type RefObject } from 'react';
+import {useState, useEffect, type RefObject} from 'react';
 
 interface CustomWindow extends Window {
     THREE?: any;
@@ -90,5 +90,5 @@ export const useSliderScripts = (containerRef: RefObject<HTMLDivElement | null>)
         };
     }, [containerRef]);
 
-    return { isLoading };
+    return {isLoading};
 };

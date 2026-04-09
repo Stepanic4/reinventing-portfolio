@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next';
-import { GlassCard } from '../features/GlassShatter/GlassCard.tsx';
-import { projectsData } from '../data/Projects';
+import {useTranslation} from 'react-i18next';
+import {GlassCard} from '../features/GlassShatter/GlassCard.tsx';
+import {projectsData} from '../data/Projects';
 
 export const Works = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
         <section className="w-full max-w-6xl mx-auto px-6 py-20">
