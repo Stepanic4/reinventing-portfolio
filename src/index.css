@@ -78,7 +78,7 @@ body {
         visibility: visible;
     }
 
-    /* Прижимаем лист к краям PDF */
+    /* Прижимаем лист к краям */
     .resume-sheet {
         position: absolute;
         left: 0;
