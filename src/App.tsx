@@ -20,7 +20,7 @@ function App() {
             <main className="relative pt-20 flex-grow">
                 {currentPage === 'main' && (
                     <div className="flex flex-col items-center">
-                        <Hero/>
+                         <Hero/>
                     </div>
                 )}
 
