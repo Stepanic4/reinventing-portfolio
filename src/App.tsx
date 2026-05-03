@@ -26,7 +26,7 @@ function App() {
 
                 {currentPage === 'works' && (
                     <div className="flex justify-center">
-                        <Works/>
+                         <Works/>
                     </div>
                 )}
 
