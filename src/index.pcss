@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+body {
+  @apply bg-amber-50/50 text-slate-900;
+  @apply transition-all duration-500;
+  margin: 0;
+}
+
+@layer components {
+  .btn-nav-shadow {
+    /* Базовые стили */
+    @apply text-amber-950 dark:text-slate-200 font-medium;
+    @apply px-5 py-2 rounded-xl border transition-all duration-300 cursor-pointer;
+
+    /* Эффект матового стекла */
+    @apply backdrop-blur-md;
+
+    /* --- СВЕТЛАЯ ТЕМА --- */
+    /* Снижена плотность фона для прозрачности */
+    background: linear-gradient(
+      180deg,
+      rgba(235, 230, 210, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.5),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.05),
+      0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    /* Ховер эффекты */
+    @apply hover:scale-105 hover:-translate-y-0.5 hover:text-yellow-700 dark:hover:text-blue-200;
+
+    /* --- ТЕМНАЯ ТЕМА --- */
+    @variant dark {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+        0 10px 15px -3px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow:
+          inset 0 1px 2px rgba(255, 255, 255, 0.3),
+          0 0 20px 5px rgba(59, 130, 246, 0.15),
+          0 10px 15px -3px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    /* Эффект нажатия */
+    &:active {
+      @apply scale-95 translate-y-0;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@keyframes triangle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+.animate-triangle {
+  animation: triangle-pulse 1.5s infinite ease-in-out;
+}
+
+/* Резюме для печати */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .resume-sheet,
+  .resume-sheet * {
+    visibility: visible;
+  }
+
+  .resume-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background-color: white !important;
+    color: black !important;
+    min-height: 297mm;
+  }
+
+  .resume-sheet h1,
+  .resume-sheet h4,
+  .resume-sheet p,
+  .resume-sheet li {
+    color: #000 !important;
+  }
+
+  .resume-sheet .border-b {
+    border-color: #f1f5f9 !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}
