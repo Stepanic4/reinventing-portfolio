@@ -7,7 +7,7 @@ export const Hero = () => {
     return (
         <section className="flex flex-col items-center justify-center pt-32 pb-16 px-6">
             {/* Блок с фото */}
-            <div className="relative mb-10">
+             <div className="relative mb-10">
                 <div className="absolute inset-0 bg-blue-500/20 blur-[80px] rounded-full"></div>
                 <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-[3rem] overflow-hidden border border-white/10 bg-[#0f172a]/40 backdrop-blur-sm">
                     <img src="/avatar.jpg" alt="Me"
