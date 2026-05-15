@@ -30,7 +30,7 @@ function App() {
         )}
 
         {currentPage === "resume" && (
-          <div className="flex justify-center pt-40">
+          <div className="flex justify-center pt-10">
             {currentPage === "resume" && <Resume />}
           </div>
         )}

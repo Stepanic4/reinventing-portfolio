@@ -5,35 +5,6 @@ export const Resume = () => {
 
   return (
     <>
-      {/* Инъекция стилей для печати и кастомной анимации кнопки */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        /* Убираем дефолтные отступы браузера при печати */
-        @page { size: A4; margin: 0; }
-        @media print {
-          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .resume-sheet { height: 297mm; width: 210mm; overflow: hidden; }
-        }
-        
-        /* Анимация пульсации для кнопки */
-        @keyframes pulse-shadow {
-          0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
-          70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
-        }
-        .animate-pulse-shadow {
-          animation: pulse-shadow 2s infinite ease-in-out;
-        }
-        .animate-pulse-shadow:hover {
-          animation: none;
-          box-shadow: none;
-        }
-      `,
-        }}
-      />
-
-      {/* ПУЛЬСИРУЮЩАЯ КНОПКА */}
       <button
         onClick={() => window.print()}
         className="animate-pulse-shadow fixed bottom-15 left-8 z-50 px-5 py-2 text-xs bg-sky-500/30 hover:bg-cyan-500 text-white font-bold uppercase tracking-widest rounded-sm backdrop-blur-sm cursor-pointer print:hidden transition-all"
@@ -41,17 +12,14 @@ export const Resume = () => {
         {t("resume.download") || "Stáhnout PDF"}
       </button>
 
-      {/* Контейнер: вернул исходный фон (убрал bg-slate-50) */}
-      <div className="resume-page-container w-full flex flex-col items-center py-10 px-4 print:p-0 print:m-0">
-        {/* А4 КОНТЕЙНЕР */}
-        <div className="resume-sheet relative w-full max-w-[210mm] min-h-[296mm] bg-white dark:bg-slate-900 shadow-2xl print:shadow-none print:m-0 flex flex-col overflow-hidden text-slate-900">
-          {/* Градиентная полоса сверху */}
+      {/* Родительский контейнер. print:block ломает флекс-центрирование при печати */}
+      <div className="resume-page-container w-full flex flex-col items-center py-10 px-4 print:block print:p-0 print:m-0">
+        <div className="resume-sheet relative w-full max-w-[210mm] min-h-[296mm] bg-white dark:bg-slate-900 shadow-2xl flex flex-col text-slate-900">
           <div className="h-1.5 w-full bg-gradient-to-r from-blue-600 via-yellow-400 to-red-500 shrink-0 print:h-1" />
 
-          {/* Жестко сжали padding для печати: print:px-10 print:py-6 */}
-          <div className="p-8 md:p-12 print:px-10 print:py-6 flex-grow">
-            {/* HEADER: уменьшили отступы print:mb-4 print:pb-4 */}
-            <header className="flex flex-col md:flex-row justify-between items-start mb-8 border-b border-slate-100 dark:border-slate-800 pb-8 print:mb-4 print:pb-4 print:border-slate-200 shrink-0">
+          {/* Ужали общие паддинги для печати до p-6 */}
+          <div className="p-8 md:p-12 print:p-6 flex-grow">
+            <header className="flex flex-col md:flex-row print:flex-row justify-between items-start mb-8 border-b border-slate-100 dark:border-slate-800 pb-8 print:mb-4 print:pb-3 print:border-slate-200 shrink-0">
               <div className="flex items-center gap-6 print:gap-4">
                 <div className="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-slate-100 shadow-sm print:w-16 print:h-16">
                   <img
@@ -73,8 +41,7 @@ export const Resume = () => {
                 </div>
               </div>
 
-              {/* Логотип рыцаря */}
-              <div className="hidden md:block opacity-20 dark:invert print:opacity-10">
+              <div className="hidden md:block print:block opacity-20 dark:invert print:opacity-10">
                 <img
                   src="/knight.webp"
                   alt="Knight"
@@ -83,11 +50,10 @@ export const Resume = () => {
               </div>
             </header>
 
-            {/* ОСНОВНОЙ КОНТЕНТ (Grid) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 print:gap-6">
-              {/* ЛЕВАЯ КОЛОНКА */}
-              <div className="md:col-span-1 space-y-8 print:space-y-4">
-                <section className="print:break-inside-avoid">
+            {/* Сетка. print:gap-4 чтобы влез футер */}
+            <div className="grid grid-cols-1 md:grid-cols-3 print:grid print:grid-cols-3 gap-10 print:gap-4">
+              <div className="md:col-span-1 print:col-span-1 space-y-8 print:space-y-3">
+                <section>
                   <h2 className="text-[11px] font-black text-blue-600 uppercase italic tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2 mb-4 print:mb-2 print:pb-1">
                     {t("resume.skills")}
                   </h2>
@@ -127,7 +93,7 @@ export const Resume = () => {
                   </div>
                 </section>
 
-                <section className="print:break-inside-avoid">
+                <section>
                   <h2 className="text-[11px] font-black text-blue-600 uppercase italic tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2 mb-4 print:mb-2 print:pb-1">
                     {t("resume.lang")}
                   </h2>
@@ -152,9 +118,8 @@ export const Resume = () => {
                 </section>
               </div>
 
-              {/* ПРАВАЯ КОЛОНКА */}
-              <div className="md:col-span-2 space-y-8 print:space-y-4">
-                <section className="print:break-inside-avoid">
+              <div className="md:col-span-2 print:col-span-2 space-y-8 print:space-y-3">
+                <section>
                   <h2 className="text-[11px] font-black text-blue-600 uppercase italic tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2 mb-4 print:mb-2 print:pb-1">
                     {t("resume.experience")}
                   </h2>
@@ -176,7 +141,7 @@ export const Resume = () => {
                   </div>
                 </section>
 
-                <section className="print:break-inside-avoid">
+                <section>
                   <h2 className="text-[11px] font-black text-blue-600 uppercase italic tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2 mb-4 print:mb-2 print:pb-1">
                     {t("resume.education")}
                   </h2>
@@ -233,7 +198,7 @@ export const Resume = () => {
                   </div>
                 </section>
 
-                <section className="print:break-inside-avoid">
+                <section>
                   <h2 className="text-[11px] font-black text-blue-600 uppercase italic tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2 mb-4 print:mb-2 print:pb-1">
                     {t("resume.info")}
                   </h2>
@@ -274,7 +239,7 @@ export const Resume = () => {
             </div>
           </div>
 
-          <footer className="mt-auto py-6 px-8 md:px-12 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-tighter print:px-10 print:py-2">
+          <footer className="mt-auto py-6 px-8 md:px-12 print:flex print:flex-row border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-tighter print:px-6 print:py-2">
             <a
               href="https://www.linkedin.com/in/ivan-zolotukhin"
               target="_blank"

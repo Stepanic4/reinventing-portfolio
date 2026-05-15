@@ -85,43 +85,66 @@ body {
   animation: triangle-pulse 1.5s infinite ease-in-out;
 }
 
-/* Резюме для печати */
-@media print {
-  body * {
-    visibility: hidden;
-  }
+/* --- НАСТРОЙКИ ПЕЧАТИ (PDF) --- */
+@page {
+  size: A4;
+  margin: 0;
+}
 
-  .resume-sheet,
-  .resume-sheet * {
-    visibility: visible;
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 296mm !important; /* Убавили 1мм для защиты от субпиксельного переполнения на мобилках */
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white;
+    overflow: hidden !important; /* Жестко отсекаем любые невидимые хвосты */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .resume-sheet {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    width: 210mm !important;
+    height: 296mm !important;
+    max-height: 296mm !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Гарантируем, что внешние обертки не дают отступов */
+  #root,
+  .resume-page-container {
     margin: 0 !important;
     padding: 0 !important;
-    box-shadow: none !important;
-    background-color: white !important;
-    color: black !important;
-    min-height: 297mm;
+    min-height: 0 !important;
   }
+}
 
-  .resume-sheet h1,
-  .resume-sheet h4,
-  .resume-sheet p,
-  .resume-sheet li {
-    color: #000 !important;
+/* --- АНИМАЦИЯ КНОПКИ --- */
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
   }
+  70% {
+    box-shadow: 0 0 0 15px rgba(6, 182, 212, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0);
+  }
+}
 
-  .resume-sheet .border-b {
-    border-color: #f1f5f9 !important;
-  }
+.animate-pulse-shadow {
+  animation: pulse-shadow 2s infinite ease-in-out;
+}
 
-  @page {
-    size: A4;
-    margin: 0;
-  }
+.animate-pulse-shadow:hover {
+  animation: none;
+  box-shadow: none;
 }
