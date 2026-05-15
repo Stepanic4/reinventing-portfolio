@@ -12,12 +12,10 @@ export const Resume = () => {
         {t("resume.download") || "Stáhnout PDF"}
       </button>
 
-      {/* Родительский контейнер. print:block ломает флекс-центрирование при печати */}
       <div className="resume-page-container w-full flex flex-col items-center py-10 px-4 print:block print:p-0 print:m-0">
         <div className="resume-sheet relative w-full max-w-[210mm] min-h-[296mm] bg-white dark:bg-slate-900 shadow-2xl flex flex-col text-slate-900">
           <div className="h-1.5 w-full bg-gradient-to-r from-blue-600 via-yellow-400 to-red-500 shrink-0 print:h-1" />
 
-          {/* Ужали общие паддинги для печати до p-6 */}
           <div className="p-8 md:p-12 print:p-6 flex-grow">
             <header className="flex flex-col md:flex-row print:flex-row justify-between items-start mb-8 border-b border-slate-100 dark:border-slate-800 pb-8 print:mb-4 print:pb-3 print:border-slate-200 shrink-0">
               <div className="flex items-center gap-6 print:gap-4">
@@ -50,7 +48,6 @@ export const Resume = () => {
               </div>
             </header>
 
-            {/* Сетка. print:gap-4 чтобы влез футер */}
             <div className="grid grid-cols-1 md:grid-cols-3 print:grid print:grid-cols-3 gap-10 print:gap-4">
               <div className="md:col-span-1 print:col-span-1 space-y-8 print:space-y-3">
                 <section>
@@ -135,7 +132,7 @@ export const Resume = () => {
                     <p className="text-blue-600 text-[11px] font-bold uppercase mb-2 print:mb-1">
                       Simplepin.inc
                     </p>
-                    <p className="text-xs text-slate-500 leading-relaxed print:text-[10px] print:leading-tight">
+                    <p className="whitespace-pre-line text-xs text-slate-500 leading-relaxed print:text-[10px] print:leading-tight">
                       {t("resume.experience_text")}
                     </p>
                   </div>
