@@ -20,7 +20,7 @@ function App() {
         {currentPage === "main" && (
           <div className="flex flex-col items-center">
             <Hero />
-          </div>
+           </div>
         )}
 
         {currentPage === "works" && (
