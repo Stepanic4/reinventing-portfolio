@@ -11,7 +11,7 @@ export const useSliderScripts = (
   containerRef: RefObject<HTMLDivElement | null>,
 ) => {
   const [isLoading, setIsLoading] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth >= 1024 : true,
+     typeof window !== "undefined" ? window.innerWidth >= 1024 : true,
   );
 
   useEffect(() => {
