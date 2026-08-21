@@ -36,7 +36,7 @@ function App() {
         )}
       </main>
       <div className="print:hidden">
-        <Footer />
+         <Footer />
       </div>
     </div>
   );
