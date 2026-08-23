@@ -7,7 +7,7 @@ import { Works } from "./components/Works";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("main");
+   const [currentPage, setCurrentPage] = useState("main");
 
   return (
                     <div className="flex flex-col min-h-screen transition-colors duration-500 dark:bg-[#020617]  selection:bg-blue-500/30">
