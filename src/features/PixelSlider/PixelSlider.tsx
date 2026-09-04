@@ -7,7 +7,7 @@ export const PixelSlider = () => {
 
     return (
         <div className="relative w-full flex flex-col items-center min-h-[650px]">
-            {/* ПРЕЛОАДЕР */}
+             {/* ПРЕЛОАДЕР */}
             {isLoading && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-transparent">
                     <div className="w-0 h-0
