@@ -15,7 +15,7 @@ export const useSliderScripts = (
   );
 
   useEffect(() => {
-      let isDestroyed = false;
+       let isDestroyed = false;
      const container = containerRef.current;
     if (window.innerWidth < 1024 || !container) {
       return;
