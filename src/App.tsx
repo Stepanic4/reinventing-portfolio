@@ -14,7 +14,7 @@ function App() {
        <ScrollToTop currentPage={currentPage} />
                  <div className="print:hidden">
         <Header currentPage={currentPage} setPage={setCurrentPage} />
-      </div>
+       </div>
 
       <main className="relative pt-20 grow">
         {currentPage === "main" && (
