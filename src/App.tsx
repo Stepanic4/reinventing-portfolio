@@ -1,4 +1,4 @@
-import { useState } from "react";
+тоimport { useState } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Footer } from "./components/Footer";
@@ -30,7 +30,7 @@ function App() {
         )}
 
         {currentPage === "resume" && (
-          <div className="flex justify-center pt-10">
+           <div className="flex justify-center pt-10">
             {currentPage === "resume" && <Resume />}
              </div>
         )}
